@@ -1,0 +1,14 @@
+.residentes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.residente-card {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 5px;
+}
