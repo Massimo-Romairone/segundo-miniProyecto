@@ -1,13 +1,13 @@
 import { Link } from "react-scroll";
-import './Header.css'
+import '../../index.css'
 
 function Header() {
   return (
     <header>
       <h1>Geriatrico</h1>
-      <nav>
-        <Link to="residentes" smooth={true} duration={500}>Residentes</Link>
-        <Link to="reportes" smooth={true} duration={500}>Reportes</Link>
+      <nav className="nav">
+        <Link to="residentes" smooth={true} duration={500} className="nav-link">Residentes</Link>
+        <Link to="reportes" smooth={true} duration={500} className="nav-link">Reportes</Link>
       </nav>
     </header>
   );

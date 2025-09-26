@@ -1,39 +1,38 @@
-import type { ModalProps } from "../interfaces/IModalProps";
+import type { ReactNode } from "react";
+import { createPortal } from "react-dom";
 
-function Modal({ children, onClose }: ModalProps) {
-  return (
+interface ModalProps {
+  children: ReactNode;
+  onClose: () => void;
+}
+
+export default function Modal({ children, onClose }: ModalProps) {
+  return createPortal(
     <div
-      className="modal-overlay"
-      onClick={onClose}
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "rgba(0,0,0,0.5)",
+        inset: 0,
+        background: "rgba(0,0,0,0.5)",
         display: "flex",
-        justifyContent: "center",
         alignItems: "center",
-        zIndex: 1000
+        justifyContent: "center",
+        zIndex: 9999,
       }}
+      onClick={onClose}
     >
       <div
-        className="modal-content"
-        onClick={(e) => e.stopPropagation()}
         style={{
-          backgroundColor: "white",
-          padding: "24px",
-          borderRadius: "8px",
-          maxHeight: "80vh",
-          overflowY: "auto",
-          minWidth: "300px"
+          background: "white",
+          padding: "2rem",
+          borderRadius: "12px",
+          maxWidth: "500px",
+          width: "90%",
         }}
+        onClick={(e) => e.stopPropagation()}
       >
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
-
-export default Modal;

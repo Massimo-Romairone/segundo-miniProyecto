@@ -32,7 +32,7 @@ function ResidenteCard({ residente, onEliminar, onActualizarResidente }: Residen
   };
 
   return (
-    <div className="residente-card">
+    <div className={`residente-card ${abrirModal || abrirEditar ? 'no-hover' : ''}`}>
       <h3>{residente.nombre}</h3>
       <p>Edad: {residente.edad}</p>
       <p>Contacto: {residente.contacto}</p>
@@ -51,24 +51,26 @@ function ResidenteCard({ residente, onEliminar, onActualizarResidente }: Residen
 
       {abrirEditar && (
         <Modal onClose={() => setAbrirEditar(false)}>
-          <h2>Editar Residente</h2>
-          <form onSubmit={actualizar}>
-            <label>
-              Nombre:
-              <input type="text" value={nombre} onChange={e => setNombre(e.target.value)} required />
-            </label>
-            <label>
-              Edad:
-              <input type="number" value={edad} onChange={e => setEdad(Number(e.target.value))} required />
-            </label>
-            <label>
-              Contacto:
-              <input type="text" value={contacto} onChange={e => setContacto(e.target.value)} required />
-            </label>
+          <div className="editar-residente">
+            <h2>Editar Residente</h2>
+            <form onSubmit={actualizar}>
+              <label>
+                Nombre:
+                <input type="text" value={nombre} onChange={e => setNombre(e.target.value)} required />
+              </label>
+              <label>
+                Edad:
+                <input type="number" value={edad} onChange={e => setEdad(Number(e.target.value))} required />
+              </label>
+              <label>
+                Contacto:
+                <input type="text" value={contacto} onChange={e => setContacto(e.target.value)} required />
+              </label>
 
-            <button type="submit">Guardar</button>
-            <button type="button" onClick={() => setAbrirEditar(false)}>Cancelar</button>
-          </form>
+              <button type="submit">Guardar</button>
+              <button type="button" onClick={() => setAbrirEditar(false)}>Cancelar</button>
+            </form>
+          </div>
         </Modal>
       )}
     </div>

@@ -31,8 +31,8 @@ function ResidentesSection() {
     };
 
     return (
-        <Element name="residentes">
-            <h2>Residentes</h2>
+        <Element name="residentes" className="residentes-section">
+            <h2 className="h2-residentes">Residentes</h2>
 
             <div className="residentes-container">
                 {residentes.map(residente => (

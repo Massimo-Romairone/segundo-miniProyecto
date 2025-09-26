@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Element } from "react-scroll";
 import type { Residente } from "../../../interfaces/IResidentes";
 import type { Medicamento } from "../../../interfaces/IMedicamentos";
+import './Reportes.css'
 
 function ReportesSection() {
   const [residentes, setResidentes] = useState<Residente[]>([]);
@@ -18,12 +19,15 @@ function ReportesSection() {
     fetch("https://68cb2705430c4476c34c20bf.mockapi.io/medicamentos")
       .then(res => res.json())
       .then((data: Medicamento[]) => {
-        // Normalizamos los medicamentos
+  
         const normalized = data.map(med => ({
           ...med,
           cantidadNum: Number(med.cantidad || 0),
-          residenteIds: med.residenteId?.split(",").map(id => id.trim()) || []
+          residenteIds: med.residenteId
+            ? med.residenteId.split(",").map(id => id.trim().toString())
+            : []
         }));
+
         setMedicamentos(normalized);
       })
       .catch(() => setMedicamentos([]));
@@ -34,17 +38,17 @@ function ReportesSection() {
   const medicamentosReponer = medicamentos.filter(med => med.cantidadNum < 3);
 
   return (
-    <Element name="reportes">
+    <Element name="reportes" className="reportes-section">
       <h2>Reportes diarios</h2>
 
       <h3>Medicamentos a administrar hoy por residente</h3>
       {residentes.map(residente => {
         const medsDelResidente = medicamentos.filter(med =>
-          med.residenteIds.includes(residente.id)
+          med.residenteIds.includes(residente.id.toString())
         );
 
         return (
-          <div key={residente.id}>
+          <div key={residente.id} className="residente-report">
             <h4>{residente.nombre}</h4>
             {medsDelResidente.length > 0 ? (
               <ul>
@@ -63,7 +67,7 @@ function ReportesSection() {
 
       <h3>Medicamentos que requieren reposición</h3>
       {medicamentosReponer.length > 0 ? (
-        <ul>
+        <ul className="meds-reponer">
           {medicamentosReponer.map(med => {
             const nombresResidentes = med.residenteIds
               .map(id => residentes.find(r => r.id === id)?.nombre || "Desconocido")

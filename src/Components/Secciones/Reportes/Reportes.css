@@ -1,0 +1,68 @@
+.reportes-section {
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.reportes-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.reportes-section h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #2832ee;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+.reportes-section h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #1b263b;
+    border-left: 4px solid #2832ee;
+    padding-left: 0.5rem;
+}
+
+.reportes-section h4 {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    color: #000000;
+    font-weight: 600;
+}
+
+.reportes-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+.reportes-section li {
+    background: #ffffff;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    font-size: 20px;
+    line-height: 1.4;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reportes-section li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.reportes-section p {
+    font-style: italic;
+    color: #555;
+    margin: 0.5rem 0 1rem 0;
+}

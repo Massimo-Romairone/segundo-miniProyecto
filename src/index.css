@@ -1,4 +1,142 @@
 body{
     margin: 0;
     padding: 0;
+    background: #f8f9fa;
 }
+
+header {
+    background: linear-gradient(to bottom, #000000, #2832ee);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 40px;
+}
+
+
+
+.nav-link {
+    font-size: 30px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: #ffaa3b;
+}
+
+
+
+.h2-residentes {
+    text-align: center;
+    font-size: 30px;
+    color: #000000;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+
+.h2-residentes::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #2832ee;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+
+.residentes-container {
+    padding: 10px;
+}
+
+.residentes-container h2,
+.residentes-container h3 {
+    color: #000000;
+    text-align: center;
+    font-size: 30px;
+}
+
+.residente-card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.residente-card p {
+    font-size: 20px;
+}
+
+.residente-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.residente-card.no-hover:hover {
+    transform: none;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+
+button {
+    background: linear-gradient(135deg, #2832ee, #000000);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    margin: 3px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #1b263b, #000000);
+    color: #ffaa3b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+button:disabled {
+    background: #7a7a7a;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+.editar-residente label{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.editar-residente input {
+    height: 30px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.5rem 0.75rem;
+}
+
+
+
