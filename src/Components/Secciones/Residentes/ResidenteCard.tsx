@@ -8,9 +8,15 @@ function ResidenteCard({ residente, onEliminar, onActualizarResidente }: Residen
   const [abrirModal, setAbrirModal] = useState(false);
   const [abrirEditar, setAbrirEditar] = useState(false);
 
+  //EDITAR RESIDENTE
   const [nombre, setNombre] = useState(residente.nombre);
   const [edad, setEdad] = useState(residente.edad);
   const [contacto, setContacto] = useState(residente.contacto);
+
+  //CREAR RESIDENTE
+  const [nombreNuevo, setNombreNuevo] = useState("");
+  const [edadNuevo, setEdadNuevo] = useState<number | "">("");
+  const [contactoNuevo, setContactoNuevo] = useState("");
 
   const actualizar = async (e: React.FormEvent) => {
     e.preventDefault();

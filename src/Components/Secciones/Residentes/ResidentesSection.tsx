@@ -7,6 +7,8 @@ import type { Residente } from "../../../interfaces/IResidentes";
 function ResidentesSection() {
 
     const [residentes, setResidentes] = useState<Residente[]>([]);
+    const [idAEliminar, setIdAEliminar] = useState<string | null>(null);
+    const [mostrarConfirmar, setMostrarConfirmar] = useState(false);
 
 
     useEffect(() => {
@@ -16,36 +18,56 @@ function ResidentesSection() {
     }, []);
 
     const eliminarResidente = (id: string) => {
-        setResidentes(prev => prev.filter(r => r.id !== id));
+    setResidentes((prev) => prev.filter((r) => r.id !== id));
     };
 
-    const eliminar = async (id: string) => {
-        const confirmacion = window.confirm("¿Seguro que quieres eliminar este residente?");
-        if (!confirmacion) return;
+    const confirmarEliminar = (id: string) => {
+        setIdAEliminar(id);
+        setMostrarConfirmar(true);
+    };
 
-        await fetch(`https://68cb2705430c4476c34c20bf.mockapi.io/residentes/${id}`, {
-        method: "DELETE"
+    const eliminar = async () => {
+        if (!idAEliminar) return;
+
+        await fetch(`https://68cb2705430c4476c34c20bf.mockapi.io/residentes/${idAEliminar}`, {
+        method: "DELETE",
         });
 
-        eliminarResidente(id);
+        eliminarResidente(idAEliminar);
+        setMostrarConfirmar(false);
+        setIdAEliminar(null);
     };
 
     return (
         <Element name="residentes" className="residentes-section">
-            <h2 className="h2-residentes">Residentes</h2>
+            <div className="h2-button">
+                <h2 className="h2-residentes">Residentes</h2>
+                <button>Agregar Residente</button>
+            </div>
 
             <div className="residentes-container">
                 {residentes.map(residente => (
-                <ResidenteCard key={residente.id} residente={residente}
-                    onEliminar={eliminar}
+                <ResidenteCard 
+                    key={residente.id} 
+                    residente={residente}
+                    onEliminar={() => confirmarEliminar(residente.id)}
                     onActualizarResidente={(residenteActualizado) => {
-                    setResidentes(prev =>
-                    prev.map(r => (r.id === residenteActualizado.id ? residenteActualizado : r))
-                    )}}
+                    setResidentes(prev => prev.map(r => (r.id === residenteActualizado.id ? residenteActualizado : r)))}}
                 />
                 ))}
             </div>
-
+            
+            {mostrarConfirmar && (
+                <div className="modal-overlay">
+                <div className="modal">
+                    <h3>¿Seguro que quieres eliminar este residente?</h3>
+                    <div className="acciones">
+                    <button onClick={eliminar}>Confirmar</button>
+                    <button onClick={() => setMostrarConfirmar(false)}>Cancelar</button>
+                    </div>
+                </div>
+                </div>
+            )}
         </Element>
     )
 }
